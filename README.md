@@ -1,6 +1,6 @@
 # `crypto-secretbox-rekey`
 
-> Experimental extension to `libsodium` `crypto_secretbox` that allows for rekeying without decrypting the plaintext
+> Experimental extension to `libsodium` `crypto_secretbox` that allows for rekeying without decrypting the ciphertext
 
 :warning: Work in progress! This is an experiment :construction:
 
