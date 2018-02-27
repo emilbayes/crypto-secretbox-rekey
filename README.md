@@ -53,6 +53,23 @@ int crypto_secretbox_rekey_easy(unsigned char *c, unsigned long long clen,
                                 const unsigned char *nn, const unsigned char *kn);
 ```
 
+## Math notes
+
+$$K_{derived} = \mathrm{hsalsa}_{20}(n_{1\dots16}, K_{in}), |K_{derived}| = 32$$
+
+$$\mathrm{PRF} = \mathrm{salsa}_{20}(n_{17\dots32},K_{derived})$$
+
+$$K_{\mathrm{MAC}} = PRF_{1\dots32}, |K_{\mathrm{MAC}}| = 32$$
+
+$$C = M \oplus PRF_{33\dots}$$
+
+Note that the above two equations look slightly different in the implementation
+as they're called `block0`:
+
+$$B_0 = [K_{\mathrm{MAC}},c_1,\dots,c_{32}], |B| = 64$$
+
+$$\mathrm{MAC} = \mathrm{Poly1305}(C, K_{\mathrm{MAC}})$$
+
 ## License
 
 [ISC](LICENSE)
