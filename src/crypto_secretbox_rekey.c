@@ -1,4 +1,4 @@
-#include "crypto_secretbox_rekey_easy.h"
+#include "crypto_secretbox_rekey.h"
 
 #ifdef __cplusplus
 extern "C" {
