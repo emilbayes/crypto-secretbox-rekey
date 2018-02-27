@@ -25,14 +25,14 @@ crypto_secretbox_keygen(key_old);
 randombytes_buf(nonce_new, sizeof nonce_new);
 randombytes_buf(nonce_old, sizeof nonce_old);
 
-crypto_secretbox_easy(ciphertext_rekeyed, MESSAGE, MESSAGE_LEN, nonce_old, key_old);
+crypto_secretbox_easy(ciphertext, MESSAGE, MESSAGE_LEN, nonce_old, key_old);
 
-crypto_secretbox_rekey_easy(ciphertext_rekeyed, CIPHERTEXT_LEN,
+crypto_secretbox_rekey_easy(ciphertext, CIPHERTEXT_LEN,
                             nonce_old, key_old,
                             nonce_new, key_new);
 
 unsigned char decrypted[MESSAGE_LEN];
-if (crypto_secretbox_open_easy(decrypted, ciphertext_rekeyed, CIPHERTEXT_LEN, nonce_new, key_new) != 0) {
+if (crypto_secretbox_open_easy(decrypted, ciphertext, CIPHERTEXT_LEN, nonce_new, key_new) != 0) {
   /* message forged! */
 }
 ```
